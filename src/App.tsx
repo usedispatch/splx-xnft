@@ -9,6 +9,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { RecoilRoot } from "recoil";
 import { TokenListNavigator } from "./screens/TokenNavigator";
+import { WalletRead } from "./screens/WalletRead";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { registerRootComponent } from "expo";
 
@@ -35,17 +36,17 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen
-        name="List"
-        component={TokenListNavigator}
+        name="Wallet"
+        component={WalletRead}
         options={{
-          headerShown: false,
-          tabBarLabel: "Tokens",
+          headerShown: true,
+          tabBarLabel: "Wallet",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bank" color={color} size={size} />
+            <MaterialCommunityIcons name="wallet" color={color} size={size} />
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Examples"
         component={ExamplesScreens}
         options={{
@@ -54,7 +55,7 @@ function TabNavigator() {
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }

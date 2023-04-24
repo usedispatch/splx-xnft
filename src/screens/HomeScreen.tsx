@@ -50,10 +50,11 @@ export function HomeScreen() : JSX.Element  {
     <Screen>
       <Text style={tw`mb-4`}>
         Solarplex v1
-        {p?.toBase58()}
+        <br/>
+        Pubkey: {p?.toBase58()}
         <br/>
         <br/>
-        {ctr}
+        Ctr: {ctr}
       </Text>
       <Button
           title={`The ctr is ${ctr}`}
