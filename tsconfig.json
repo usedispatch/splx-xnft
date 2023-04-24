@@ -2,5 +2,14 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true
-  }
+  },
+  "baseUrl": ".",
+    "paths": {
+      "@dispatch-services/db-forum-common": [
+        "node_modules/@dispatch-services/db-forum-common"
+      ],
+      "@dispatch-services/utils-common": [
+        "node_modules/@dispatch-services/utils-common"
+      ],  
+    },
 }
