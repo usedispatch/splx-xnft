@@ -1,6 +1,6 @@
 import { FlatList, Text } from "react-native";
-import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
-import { useDidLaunch, usePublicKey, usePublicKeys } from "../hooks/xnft-hooks";
+import { Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import { useDidLaunch, usePublicKey, usePublicKeys, useSolana } from "../hooks/xnft-hooks";
 
 import { Screen } from "../components/Screen";
 import tw from "twrnc";
@@ -8,6 +8,9 @@ import { useEffect } from "react";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 
 // import { useSolanaConnection } from "../hooks/xnft-hooks";
+
+const walletSandb1x = '8CKzyXxWV5n4iojkTMu6XRr4AZXdD9GzRyP5fRCpT5LM';
+const walletSandb0x = 'Gvr5EbG96PBWAuethws7RRNnHGQDDhbbnAVGt8cZEAUu';
 
 export function HomeScreen() {
   const features = [
@@ -24,20 +27,29 @@ export function HomeScreen() {
   console.log('start here');
   const d = useDidLaunch();
   const c = useSolanaConnection();
+  const s = useSolana();
   const p = usePublicKey();
   console.log('p:', p);
   // useEffect(() => {console.log('use effect', p)}, [p])
   
-  if (p) {
-    const transaction = new Transaction().add(
-      SystemProgram.transfer({
-        fromPubkey: p,
-        toPubkey: Keypair.generate().publicKey,
-        lamports: 1,
-      })
-    );
-    console.log('tx:', transaction);
-  }
+  useEffect(() => {
+    const doTx = async () => {
+      if (p) {
+        const transaction = new Transaction().add(
+          SystemProgram.transfer({
+            fromPubkey: p,
+            toPubkey: new PublicKey(walletSandb1x),
+            lamports: 1,
+          })  
+        );
+        console.log('tx:', transaction);
+        const result = await window.xnft.solana.sendAndConfirm(transaction);
+        console.log("solana sign and confirm transaction", result);
+      }
+    }
+    // doTx();
+  })
+  
   
   // const connection = useSolanaConnection();
   // console.log('conn', connection);

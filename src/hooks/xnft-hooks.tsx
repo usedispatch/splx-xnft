@@ -70,6 +70,21 @@ export function useSolanaConnection(): Connection|undefined {
   return connection;
 }
 
+export function useSolana(): Connection|undefined {
+  const didLaunch = useDidLaunch()
+  const [solana, setSolana] = useState();
+  useEffect(() => {
+    if (didLaunch) {
+      window.xnft.solana.on("connectionUpdate", () => {
+        setSolana(window.xnft.solana);
+      });
+      setSolana(window.xnft.solana);
+    }
+  }, [didLaunch, setSolana]);
+  console.log('use ss, ', solana);
+  return solana;
+}
+
 export function useEthereumConnection(): Connection|undefined {
   const didLaunch = useDidLaunch() 
   const [connection, setConnection] = useState();
