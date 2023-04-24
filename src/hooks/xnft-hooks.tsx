@@ -1,5 +1,5 @@
-import { Event, XnftMetadata } from "@coral-xyz/common-public";
 import { Connection, PublicKey } from "@solana/web3.js";
+import { Event, XnftMetadata } from "@coral-xyz/common-public";
 import { useEffect, useState } from "react";
 
 declare global {
@@ -36,6 +36,7 @@ export function usePublicKeys(): { [key: string]: PublicKey }|undefined {
       setPublicKeys(window.xnft.publicKeys);
     }
   }, [didLaunch, setPublicKeys]);
+  console.log('use pk', publicKeys);
   return publicKeys;
 }
 
@@ -65,6 +66,7 @@ export function useSolanaConnection(): Connection|undefined {
       setConnection(window.xnft.solana.connection);
     }
   }, [didLaunch, setConnection]);
+  console.log('use sc, ', connection);
   return connection;
 }
 
@@ -84,10 +86,11 @@ export function useEthereumConnection(): Connection|undefined {
 
 // Returns true if the `window.xnft` object is ready to be used.
 export function useDidLaunch() {
-  const [didConnect, setDidConnect] = useState(false);
+  const [didConnect, setDidConnect] = useState(!!window.xnft?.connection);
   useEffect(() => {
     window.addEventListener("load", () => {
       window.xnft.on("connect", () => {
+        console.log('cxnft on connect')
         setDidConnect(true);
       });
       window.xnft.on("disconnect", () => {
@@ -95,6 +98,7 @@ export function useDidLaunch() {
       });
     });
   }, []);
+  console.log('did connect', didConnect);
   return didConnect;
 }
 
