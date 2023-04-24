@@ -36,7 +36,8 @@
     "react-native-web": "~0.18.12",
     "recoil": "*",
     "twrnc": "*",
-    "uuid": "*"
+    "uuid": "*",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

@@ -1,9 +1,11 @@
+import { Button, Image } from "react-native";
 import { FlatList, Text } from "react-native";
 import { Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { useDidLaunch, usePublicKey, usePublicKeys, useSolana } from "../hooks/xnft-hooks";
 
 import { Screen } from "../components/Screen";
 import tw from "twrnc";
+import { useAppStore } from "../store";
 import { useEffect } from "react";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 
@@ -12,18 +14,9 @@ import { useSolanaConnection } from "../hooks/xnft-hooks";
 const walletSandb1x = '8CKzyXxWV5n4iojkTMu6XRr4AZXdD9GzRyP5fRCpT5LM';
 const walletSandb0x = 'Gvr5EbG96PBWAuethws7RRNnHGQDDhbbnAVGt8cZEAUu';
 
-export function HomeScreen() {
-  const features = [
-    "tailwind",
-    "recoil",
-    "native styling",
-    "fetching code from an API",
-    "using a FlatList to render data",
-    "Image for both remote & local images",
-    "custom fonts",
-    "sign a transaction / message",
-    "theme hook with light/dark support",
-  ];
+export function HomeScreen() : JSX.Element  {
+  const {ctr, increase }= useAppStore();
+  
   console.log('start here');
   const d = useDidLaunch();
   const c = useSolanaConnection();
@@ -58,8 +51,17 @@ export function HomeScreen() {
       <Text style={tw`mb-4`}>
         Solarplex v1
         {p?.toBase58()}
+        <br/>
+        <br/>
+        {ctr}
       </Text>
-      
+      <Button
+          title={`The ctr is ${ctr}`}
+          color={
+            ctr > 0 ? "rgb(228, 208, 10)" : "rgb(33, 150, 243)"
+          }
+          onPress={() => increase(1)}
+        />
     </Screen>
   );
 }
