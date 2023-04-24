@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@coral-xyz/common-public": "^0.2.0-latest.3375",
+    "@dispatch-services/db-forum-common": "link:/Users/viksit/work/usedispatch/dispatch-services/packages/db-forum-common",
+    "@dispatch-services/utils-common": "link:/Users/viksit/work/usedispatch/dispatch-services/packages/utils-common",
     "@expo-google-fonts/dev": "*",
     "@expo/vector-icons": "^13.0.0",
     "@react-navigation/bottom-tabs": "6.3.1",
@@ -52,5 +54,6 @@
   },
   "resolutions": {
     "react-error-overlay": "6.0.11"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }
