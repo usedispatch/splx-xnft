@@ -1,6 +1,6 @@
 import { FlatList, Text } from "react-native";
 import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
-import { useDidLaunch, usePublicKeys } from "../hooks/xnft-hooks";
+import { useDidLaunch, usePublicKey, usePublicKeys } from "../hooks/xnft-hooks";
 
 import { Screen } from "../components/Screen";
 import tw from "twrnc";
@@ -24,25 +24,20 @@ export function HomeScreen() {
   console.log('start here');
   const d = useDidLaunch();
   const c = useSolanaConnection();
-  const p = usePublicKeys();
-  console.log('c, p', c, p);
-  useEffect(() => {console.log('use effect', p)}, [p])
-
-  // function doSomething() {
-  //   useEffect(() => {
-  //     console.log('lets start');
-  //     const publicKeys = usePublicKeys()  ;
-  //     console.log('keys: ', publicKeys);
-  //   });
-  // }
-  // doSomething();
-  // const transaction = new Transaction().add(
-  //   SystemProgram.transfer({
-  //     fromPubkey: publicKey,
-  //     toPubkey: Keypair.generate().publicKey,
-  //     lamports: 1_000_000,
-  //   })
-  // );
+  const p = usePublicKey();
+  console.log('p:', p);
+  // useEffect(() => {console.log('use effect', p)}, [p])
+  
+  if (p) {
+    const transaction = new Transaction().add(
+      SystemProgram.transfer({
+        fromPubkey: p,
+        toPubkey: Keypair.generate().publicKey,
+        lamports: 1,
+      })
+    );
+    console.log('tx:', transaction);
+  }
   
   // const connection = useSolanaConnection();
   // console.log('conn', connection);
@@ -50,7 +45,7 @@ export function HomeScreen() {
     <Screen>
       <Text style={tw`mb-4`}>
         Solarplex v1
-        {p?.solana.toString()}
+        {p?.toBase58()}
       </Text>
       
     </Screen>
