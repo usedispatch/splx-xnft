@@ -8,8 +8,8 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { RecoilRoot } from "recoil";
+import { Solarplex } from "./screens/Solarplex";
 import { TokenListNavigator } from "./screens/TokenNavigator";
-import { WalletRead } from "./screens/WalletRead";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { registerRootComponent } from "expo";
 
@@ -37,7 +37,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Wallet"
-        component={WalletRead}
+        component={Solarplex}
         options={{
           headerShown: true,
           tabBarLabel: "Wallet",
