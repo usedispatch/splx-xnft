@@ -1,0 +1,176 @@
+table BaseParams {
+  id: string;
+  creator_id: string; // Who created the entity.
+}
+
+table BaseActionParams {
+  parent_id: string; // Optional field if this belongs to another entity (like a profile belongs to a user).
+}
+
+union Base {
+  BaseParams,
+  BaseActionParams
+}
+
+table PostBoxParams {
+  block: uint64; // The block this was created.
+  children: int; // Number of direct children postbox has.
+  down_votes: int; 
+  score: int;
+  txn: uint16; // The txn/slot this was created.
+  up_vpotes: int;
+}
+
+table PostBoxActionParams {
+  body: string; // Optional field of the body of a postbox entity.
+  title: string; // Optional field of title of postbox entity.
+}
+
+union PostBox {
+ BaseParams,
+ BaseActionParams,
+ PostBoxParams,
+ PostBoxActionParams
+}
+
+union Forum {
+  BaseParams,
+  BaseActionParams,
+  PostBoxParams,
+  PostBoxActionParams
+}
+
+union Topic {
+  BaseParams, // ParentId will be a Forum
+  BaseActionParams,
+  PostBoxParams,
+  PostBoxActionParams
+}
+
+union Post {
+  BaseParams, // ParentId will be a topic or a post
+  BaseActionParams,
+  PostBoxParams,
+  PostBoxActionParams
+}
+
+table VoteActionParams {
+  value: int8; // -1, 1, default 0
+}
+
+union Vote {
+  BaseParams,
+  BaseActionParams,
+  PostBoxParams,
+  PostBoxActionParams,
+  VoteActionParams
+}
+
+table UserActionParams {
+  did: string; // Decentralized Id of the user.
+}
+
+// User extens Base.
+union User {
+  BaseParams,
+  BaseActionParams,
+  UserActionParams
+}
+
+// Child entities.
+
+table ProfileActionParams {
+  parent_id: string; // Entity that this is a profile of.
+  name: string;
+  image: string;
+  twitter: string;
+}
+
+// Child of a Parent Entity that has additional information like name.
+union Profile {
+  BaseParams,
+  BaseActionParams,
+  ProfileActionParams
+}
+
+table AdminActionParams {
+  parent_id: string; // The entity being administrated.
+  entity_id: string; // The entity being given admin priviledges.
+}
+
+// Child of a Parent Entity that represents Admin priviledges.
+union Admin {
+  BaseParams,
+  BaseActionParams,
+  AdminActionParams
+}
+
+table WalletActionParams {
+  parent_id: string; // The entity the wallet is attached to.
+  address: string; // The wallet address.
+}
+
+// Child of a Parent Entity that represents a Wallet associated with that entity.
+union Wallet {
+  BaseParams,
+  BaseActionParams,
+  WalletActionParams
+}
+
+table RestrictionActionParams {
+  parent_id: string; // What entity this restriction applies to.
+  query: string; // Maybe some kind of query that the rules fit into?
+}
+
+// Collection of RestrictionRules formed into And/Or queries. Extends Base.
+union Restriction {
+  BaseParams,
+  BaseActionParams,
+  RestrictionActionParams
+}
+
+table RestrictionRuleActionParams {
+  parent_id: string; // Who owns / can see / can choose this rule. Forum or User.
+  address: string; // What contract address to check.
+  amount: int; // The minimum amount of tokens a wallet needs on that contract.
+  description: string; // A description of the rule.
+}
+
+// Rule for restricting interaction with a postbox entity. Extends Base
+union RestrictionRule {
+  BaseParams,
+  BaseActionParams,
+  RestrictionRuleActionParams
+}
+
+enum Entity: uint8 {
+  Forum = 0,
+  Topic = 10,
+  Post = 20,
+  Vote = 30,
+  User = 40,
+  Profile = 50,
+  Admin = 60,
+  Wallet = 70,
+  Restriction = 80,
+  RestrictionRule = 90
+}
+
+enum Crud: uint8 { Delete = 0, Post = 1, Put = 2 }
+
+table ActionCrud {
+  crud: Crud;
+  entity: Entity;
+}
+
+union Action {
+  ActionCrud,
+  PostBoxActionParams,
+  VoteActionParams,
+  UserActionParams,
+  ProfileActionParams,
+  AdminActionParams,
+  WalletActionParams,
+  RestrictionActionParams,
+  RestrictionRuleActionParams
+}

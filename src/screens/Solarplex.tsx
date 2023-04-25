@@ -7,9 +7,6 @@ import { Section } from "../components/Section";
 import { fetchForum } from "../solarplex/api";
 import { useEffect } from "react";
 
-// import { ChainId, chainIdToHex } from "@dispatch-services/db-forum-common/chains";
-
-
 export function Solarplex() : JSX.Element {
   useEffect(()=>{
     const doFetch = async () => {

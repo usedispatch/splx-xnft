@@ -1710,24 +1710,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dispatch-services/db-forum-common@link:/Users/viksit/work/usedispatch/dispatch-services/packages/db-forum-common::locator=splx-xnft%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@dispatch-services/db-forum-common@link:/Users/viksit/work/usedispatch/dispatch-services/packages/db-forum-common::locator=splx-xnft%40workspace%3A."
-  languageName: node
-  linkType: soft
-
-"@dispatch-services/utils-common@link:/Users/viksit/work/usedispatch/dispatch-services/packages/utils-common::locator=splx-xnft%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@dispatch-services/utils-common@link:/Users/viksit/work/usedispatch/dispatch-services/packages/utils-common::locator=splx-xnft%40workspace%3A."
-  languageName: node
-  linkType: soft
-
 "@egjs/hammerjs@npm:^2.0.17":
   version: 2.0.17
   resolution: "@egjs/hammerjs@npm:2.0.17"
   dependencies:
     "@types/hammerjs": ^2.0.36
   checksum: 8945137cec5837edd70af3f2e0ea621543eb0aa3b667e6269ec6485350f4d120c2434b37c7c30b1cf42a65275dd61c1f24626749c616696d3956ac0c008c4766
+  languageName: node
+  linkType: hard
+
+"@eivifj/dot@npm:^1.0.1":
+  version: 1.0.3
+  resolution: "@eivifj/dot@npm:1.0.3"
+  checksum: 896ab27b9f00ba2c1ef9128e0f1453903463f2f652f09023cdd0f5301f31b8a519a72b107359adae5843bea3dc52f3e03d9d876c7a3325fac38769f501aca0a1
   languageName: node
   linkType: hard
 
@@ -3670,7 +3665,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@solana/wallet-adapter-base@npm:^0.9.2":
+"@solana/wallet-adapter-base@npm:^0.9.2, @solana/wallet-adapter-base@npm:^0.9.20":
   version: 0.9.22
   resolution: "@solana/wallet-adapter-base@npm:0.9.22"
   dependencies:
@@ -5214,6 +5209,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-module-resolver@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "babel-plugin-module-resolver@npm:5.0.0"
+  dependencies:
+    find-babel-config: ^2.0.0
+    glob: ^8.0.3
+    pkg-up: ^3.1.0
+    reselect: ^4.1.7
+    resolve: ^1.22.1
+  checksum: d6880e49fc8e7bac509a2c183b4303ee054a47a80032a59a6f7844bb468ebe5e333b5dc5378443afdab5839e2da2b31a6c8d9a985a0047cd076b82bb9161cc78
+  languageName: node
+  linkType: hard
+
 "babel-plugin-polyfill-corejs2@npm:^0.3.3":
   version: 0.3.3
   resolution: "babel-plugin-polyfill-corejs2@npm:0.3.3"
@@ -6537,7 +6545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"component-type@npm:^1.2.1":
+"component-type@npm:1.2.1, component-type@npm:^1.2.1":
   version: 1.2.1
   resolution: "component-type@npm:1.2.1"
   checksum: 41a81f87425088c072dc99b7bd06d8c81057047a599955572bfa7f320e1f4d0b38422b2eee922e0ac6e4132376c572673dbf5eb02717898173ec11512bc06b34
@@ -6837,6 +6845,13 @@ __metadata:
   version: 3.3.0
   resolution: "crypto-js@npm:3.3.0"
   checksum: 193923143a4784b2f974366068d96fe8280168fd3fef2bfea9551a5c3e32096f5a8fa49ff4eeb5bd0b9716d325618d38cfbe6125e359a4ef488fbca93e600824
+  languageName: node
+  linkType: hard
+
+"crypto-js@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "crypto-js@npm:4.1.1"
+  checksum: b3747c12ee3a7632fab3b3e171ea50f78b182545f0714f6d3e7e2858385f0f4101a15f2517e033802ce9d12ba50a391575ff4638c9de3dd9b2c4bc47768d5425
   languageName: node
   linkType: hard
 
@@ -8310,7 +8325,7 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
-"ethers@npm:^5.5.1":
+"ethers@npm:^5.5.1, ethers@npm:^5.7.2":
   version: 5.7.2
   resolution: "ethers@npm:5.7.2"
   dependencies:
@@ -8982,6 +8997,16 @@ download-git-repo@latest:
     json5: ^0.5.1
     path-exists: ^3.0.0
   checksum: 0a1785d3da9f38637885d9d65f183aaa072f51a834f733035e9694e4d0f6983ae8c8e75cd4e08b92af6f595b3b490ee813a1c5a9b14740685aa836fa1e878583
+  languageName: node
+  linkType: hard
+
+"find-babel-config@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "find-babel-config@npm:2.0.0"
+  dependencies:
+    json5: ^2.1.1
+    path-exists: ^4.0.0
+  checksum: d110308b02fe6a6411a0cfb7fd50af6740fbf5093eada3d6ddacf99b07fc8eea4aa3475356484710a0032433029a21ce733bb3ef88fda1d6e35c29a3e4983014
   languageName: node
   linkType: hard
 
@@ -11230,7 +11255,7 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.1.2, json5@npm:^2.2.2":
+"json5@npm:^2.1.1, json5@npm:^2.1.2, json5@npm:^2.2.2":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -14835,6 +14860,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"reselect@npm:^4.1.7":
+  version: 4.1.8
+  resolution: "reselect@npm:4.1.8"
+  checksum: a4ac87cedab198769a29be92bc221c32da76cfdad6911eda67b4d3e7136dca86208c3b210e31632eae31ebd2cded18596f0dd230d3ccc9e978df22f233b5583e
+  languageName: node
+  linkType: hard
+
 "resolve-from@npm:^3.0.0":
   version: 3.0.0
   resolution: "resolve-from@npm:3.0.0"
@@ -15793,8 +15825,6 @@ download-git-repo@latest:
   dependencies:
     "@babel/core": ^7.21.3
     "@coral-xyz/common-public": ^0.2.0-latest.3375
-    "@dispatch-services/db-forum-common": "link:/Users/viksit/work/usedispatch/dispatch-services/packages/db-forum-common"
-    "@dispatch-services/utils-common": "link:/Users/viksit/work/usedispatch/dispatch-services/packages/utils-common"
     "@expo-google-fonts/dev": "*"
     "@expo/vector-icons": ^13.0.0
     "@expo/webpack-config": ^18.0.1
@@ -15803,19 +15833,24 @@ download-git-repo@latest:
     "@react-navigation/native-stack": 6.6.1
     "@react-navigation/stack": 6.2.1
     "@solana/buffer-layout": ^4.0.1
+    "@solana/wallet-adapter-base": ^0.9.20
     "@solana/web3.js": ^1.73.0
     "@types/lodash": ^4.14.194
     "@types/react": ~18.0.28
     "@types/react-native": ~0.71.3
     axios: ^1.3.6
+    babel-plugin-module-resolver: ^5.0.0
     buffer: ^6.0.3
     commander: ^9.4.1
+    crypto-js: ^4.1.1
+    ethers: ^5.7.2
     expo: ~48.0.7
     expo-constants: ~14.2.1
     expo-linking: ~4.0.1
     expo-status-bar: ~1.4.4
     fast-glob: ^3.2.12
     glob: ^8.0.3
+    globalthis: ^1.0.3
     jszip: ^3.10.1
     lodash: ^4.17.21
     react: 18.2.0
@@ -15827,10 +15862,14 @@ download-git-repo@latest:
     react-native-screens: ~3.20.0
     react-native-web: ~0.18.12
     recoil: "*"
+    tweetnacl: ^1.0.3
+    tweetnacl-util: ^0.15.1
     twrnc: "*"
     typescript: ^4.9.5
     uuid: "*"
+    validate: ^5.2.0
     xnft: latest
+    yaml: ^2.1.3
     zustand: ^4.3.7
   languageName: unknown
   linkType: soft
@@ -16716,6 +16755,13 @@ download-git-repo@latest:
   languageName: node
   linkType: hard
 
+"tweetnacl-util@npm:^0.15.1":
+  version: 0.15.1
+  resolution: "tweetnacl-util@npm:0.15.1"
+  checksum: ae6aa8a52cdd21a95103a4cc10657d6a2040b36c7a6da7b9d3ab811c6750a2d5db77e8c36969e75fdee11f511aa2b91c552496c6e8e989b6e490e54aca2864fc
+  languageName: node
+  linkType: hard
+
 "tweetnacl@npm:1.0.3, tweetnacl@npm:^1.0.1, tweetnacl@npm:^1.0.2, tweetnacl@npm:^1.0.3":
   version: 1.0.3
   resolution: "tweetnacl@npm:1.0.3"
@@ -16783,6 +16829,13 @@ download-git-repo@latest:
     media-typer: 0.3.0
     mime-types: ~2.1.24
   checksum: 2c8e47675d55f8b4e404bcf529abdf5036c537a04c2b20177bcf78c9e3c1da69da3942b1346e6edb09e823228c0ee656ef0e033765ec39a70d496ef601a0c657
+  languageName: node
+  linkType: hard
+
+"typecast@npm:0.0.1":
+  version: 0.0.1
+  resolution: "typecast@npm:0.0.1"
+  checksum: 164c16b58999c78b63bd7b4458888b68c3b1ebdf75e88f87d1116afe0fb9708dd6c03302248a25198d3427aa0eb1c08363df1c0606a8ac1178099970f9c6c6d2
   languageName: node
   linkType: hard
 
@@ -17206,6 +17259,17 @@ download-git-repo@latest:
   dependencies:
     builtins: ^1.0.3
   checksum: ce4c68207abfb22c05eedb09ff97adbcedc80304a235a0844f5344f1fd5086aa80e4dbec5684d6094e26e35065277b765c1caef68bcea66b9056761eddb22967
+  languageName: node
+  linkType: hard
+
+"validate@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "validate@npm:5.2.0"
+  dependencies:
+    "@eivifj/dot": ^1.0.1
+    component-type: 1.2.1
+    typecast: 0.0.1
+  checksum: 6744ee8ec5b1faef7c1b25af771279cbfb29e51a11fae097429dd3b06126ae76f1f1154ae832866ba64d7690e6ce4096d694054fd3ca6994a1c95723347acd6f
   languageName: node
   linkType: hard
 
@@ -17753,6 +17817,13 @@ xnft@latest:
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^2.1.3":
+  version: 2.2.2
+  resolution: "yaml@npm:2.2.2"
+  checksum: d90c235e099e30094dcff61ba3350437aef53325db4a6bcd04ca96e1bfe7e348b191f6a7a52b5211e2dbc4eeedb22a00b291527da030de7c189728ef3f2b4eb3
   languageName: node
   linkType: hard
 
