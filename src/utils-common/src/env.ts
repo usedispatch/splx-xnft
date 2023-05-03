@@ -107,7 +107,7 @@ export function isLocal() {
 }
 
 export function getRealm() {
-  return getEnv('REALM') || process.env.REALM;
+  return getEnv('REALM') || process.env.SOLARPLEX_REALM || process.env.REALM;
 }
 
 export function isLocalRealm() {

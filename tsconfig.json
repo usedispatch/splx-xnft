@@ -4,9 +4,9 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
-      "@dispatch-services/db-forum-common/*": [
-        "src/db-forum-common/src/*"
-      ]
+      "@dispatch-services/app-forum-store/*": [
+        "src/app-forum-store/src/*"
+      ],
     }
   },
   "include": [
