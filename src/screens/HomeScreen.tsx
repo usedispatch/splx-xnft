@@ -14,7 +14,7 @@ export function HomeScreen() : JSX.Element  {
   // Get the topics whenever forum changes or user changes.
   useEffect(() => {
     if (forumActionId) {
-      void useTopics.actions.fetchNewestTopicsForForum(forumActionId);
+      void useTopics.actions.fetchNewestTopicsForForum(forumActionId, userId);
     }
   }, [forumActionId, userId]);
   // Getting the number of topics.
@@ -24,8 +24,8 @@ export function HomeScreen() : JSX.Element  {
   const isLoading = useTopics(
     () =>
       (!forum || !topics.length) &&
-      (useTopics.getters.fetchNewestTopicsForForumIsBusy(forumActionId) ||
-        useTopics.getters.fetchNewestTopicsForForumIsLoading(forumActionId))
+      (useTopics.getters.fetchNewestTopicsForForumIsBusy(forumActionId, userId) ||
+        useTopics.getters.fetchNewestTopicsForForumIsLoading(forumActionId, userId))
   );
   const noTopics = useTopics(() => !!forum && !numTopics && !isLoading);
   useEffect(() => {
