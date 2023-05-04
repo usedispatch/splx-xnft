@@ -7,6 +7,60 @@
       "@dispatch-services/app-forum-store/*": [
         "src/app-forum-store/src/*"
       ],
+      "@dispatch-services/app-forum-store": [
+        "src/app-forum-store/src/index"
+      ],
+      "@dispatch-services/db-forum-common/*": [
+        "src/db-forum-common/src/*"
+      ],
+      "@dispatch-services/db-forum-common": [
+        "src/db-forum-common/src/index"
+      ],
+      "@dispatch-services/db-forum-common/actions": [
+        "src/db-forum-common/src/actions/index"
+      ],
+      "@dispatch-services/db-forum-common/actions/validation": [
+        "src/db-forum-common/src/actions/validation/index"
+      ],
+      "@dispatch-services/db-forum-common/chains": [
+        "src/db-forum-common/src/chains/index"
+      ],
+      "@dispatch-services/db-forum-common/entities": [
+        "src/db-forum-common/src/entities/index"
+      ],
+      "@dispatch-services/db-forum-common/errors": [
+        "src/db-forum-common/src/errors/index"
+      ],
+      "@dispatch-services/db-forum-common/queue": [
+        "src/db-forum-common/src/queue/index"
+      ],
+      "@dispatch-services/db-forum-common/score": [
+        "src/db-forum-common/src/score/index"
+      ],
+      "@dispatch-services/db-forum-common/tags": [
+        "src/db-forum-common/src/tags/index"
+      ],
+      "@dispatch-services/store": [
+        "src/store/src/index"
+      ],
+      "@dispatch-services/store/modules": [
+        "src/store/src/modules/index"
+      ],
+      "@dispatch-services/store/vuestand": [
+        "src/store/src/vuestand/index"
+      ],
+      "@dispatch-services/utils-common/*": [
+        "src/utils-common/src/*"
+      ],
+      "@dispatch-services/utils-common": [
+        "src/utils-common/src/index"
+      ],
+      "@dispatch-services/utils-service/*": [
+        "src/utils-service/src/*"
+      ],
+      "@dispatch-services/utils-service": [
+        "src/utils-service/src/index"
+      ],
     }
   },
   "include": [

@@ -1,5 +1,4 @@
 require('dotenv').config()
-console.log(process.env)
 
 module.exports = function(api) {
   api.cache(true);
@@ -22,7 +21,7 @@ module.exports = function(api) {
         ]
       }],
       ['transform-inline-environment-variables', {
-        "include": ["NODE_ENV", "SOLARPLEX_REALM", "FORUM"],
+        "include": ["NODE_ENV", "SOLARPLEX_REALM", "FORUM", "ACTIVE_CHAIN"],
       }],
     ]
   };
