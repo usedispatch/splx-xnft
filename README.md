@@ -188,7 +188,8 @@ export function CreateTopic({ forumActionId }: { forumActionId : string }) : JSX
 
 ```Typescript
 import { PostboxEntityJson } from "@dispatch-services/db-forum-common/entities";
-import { 
+import {
+  useCounts, 
   useVotes,
   useUser,
   useWallet 
@@ -203,9 +204,6 @@ export function Vote({ postboxJson }: { postboxJson: PostboxEntityJson}): JSX.El
   // Note: These will pick up changes in edits etc.
   const alreadyUpVoted = useVotes((module) => module.getters.userUpvoted(postboxJson.id));
   const alreadyDownVoted = useVotes((module) => module.getters.userDownvoted(postboxJson.id));
-  
-  // Get the type of the postbox so we use the correct module.
-  const isTopic = useTopics(() => getTypeFromId(post.id) === EntityType.Topic);
   
   // Get if the vote is in flight to the server. Note "1" for upvote -1 for downvote.
   const isPending = useVotes(
