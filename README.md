@@ -238,3 +238,134 @@ export function Vote({ postboxJson }: { postboxJson: PostboxEntityJson}): JSX.El
 
 ```
 
+## Using the API directly
+All actions follow the same format. Create the action object, hash it, send that up to /actions which will return an array
+of pending actions, find the action returned and get the txn integer array, then use that, sign it, send to chain.
+
+There are two apis -- dev and prod. The base urls (unsurprisingly) are:
+
+```
+https://dev.api.solarplex.xyz
+https://prod.api.solarplex.xyz
+```
+
+
+### Endpoints
+All endpoints will always return an array of entities (even if there is only 1). Each entity will be JSON that has
+an id attribute. Use this id attribute for edits or parent ids when creating actions (discussed later).
+
+Each entity will also have an actionId attribute that will be the actionId that created that entity. Multiple
+entities can be created by a single action.
+
+Note: Users are created when an action is crawled and that user -- keyed by their wallet address -- hasn't been created
+yet. So there is no signing in or registering. This is done automatically on your first action.
+
+Here are some useful endpoints for GETS
+
+Get pending actions for a user:
+```
+https://dev.api.solarplex.xyz/action/pending/tmpdid-${base58WalletAddress}:0096
+```
+
+Get all posts for a topic (along with interactions -- ie if a user voted on any of them -- if a creatorId query params is passed) 
+
+Note: those are ACTION Ids, not Ids. So, for example, the actionId for the solarplex dev forum is `yjtu_Y1CgN98OJOF`
+
+Note deux: All entities needed will be returned including ancestor entities like topic and forum.
+```
+https://dev.api.solarplex.xyz/entities/forum/:forumActionId/topic/:topicActionId?creatorId=tmpdid-${base58WalletAddress}:0096
+```
+
+### Creating the action.
+An action can have 3 crud types:
+```
+1: POST
+2: PUT
+3: DELETE
+```
+
+Any action that is a PUT or DELETE will need to pass a crudEnityId  --> the id of the postbox you are editing.
+
+Any action that is a POST will need to pass a parentId --> the parent Id you are adding a child to.
+
+For example, creating a Topic for a forum would mean you would pass the Forum Id.
+
+Solarplex on dev happens to be: `yjtu_Y1CgN98OJOF,000063cd7fbb001400000b5dda280000,0032'`
+
+Don't worry, we'll help you get your forum id!
+
+Each action needs to know what type of entity you are creating. For the sake of this quick documentation, the types
+you would be concerned with are:
+```
+100: Post
+140: Topic
+160: Vote
+```
+Each action will also have a "params" field that has "title", "body", and "value" (only for votes) attributes.
+
+A Topic needs a title, but a body is optional.
+
+A Post, which is a reply to a Topic, or a reply to another Post (only 1 level deep is shown on Solarplex currently, but we support
+up to 600ish levels deep for threading. We suggest only using 10 at max. Or better yet, just replying to replies like we do now!)
+
+A vote only needs a value, which is 1 for upvote, -1 for downvote.
+
+```Typescript
+const action = {
+  crud: 1, // Crud.Post
+  type: 140, // EntityType.Topic
+  parentId: 'xyz123 -- whatever the parent is', // Note, if crud was 2 or 3, you would use crudEntityId here instead.
+  params: { 
+    title: 'Hello World', 
+    body: 'How we livin?', // <-- supports markdown https://www.markdownguide.org/cheat-sheet/
+    value: 1, // <-- only use for votes!
+  },
+};
+```
+
+### Creating the RPC
+```Typescript
+const localActionId = ++someCounter;
+
+const rpc = {
+  creatorId: `tmpdid-${base58WalletAddress}:0096`,
+  wallet: base58WalletAddress,
+  chainId: 20, // Chain.SolanaDev -- local = 10, prod = 30
+  hash: SHA256(JSON.stringify(action)), // action was created above!
+  action,
+  meta: {
+    // Any metadata you want passed along with this action. It will be passed back to you (not stored) so that you can later identify the action you sent up. We use actionId which, but you can honestly use whatever. Just make sure it's unique!
+    actionId: localActionId
+  }
+}
+
+const postData = {
+  action: rpc, // <-- That's right. Could be better nomenclature!!
+}
+
+// POST postData to https://dev.api.solarplex.xyz/action
+
+// Returns same as getting pending actions (outlined below)
+
+```
+
+### Getting pending actions
+All entities will have a model status attribute ('status') that is an enum:
+```
+0: Pending
+1: Error
+```
+You will only be returned actions that are either of these statuses. When an action has been crawled, it will have a status of 2 (Active)
+and will not be returned by the pending actions endpoint.
+
+Any actions in pending state will come back with an integer array that is to be used to recreate the signed transaction by the server.
+
+You will then have the wallet sign that transaction and send it to (TODO: Z or V -- program address?)
+
+```Typescript
+
+// GET https://dev.api.solarplex.xyz/action/pending/tmpdid-${base58WalletAddress}:0096
+
+// This will return actions and other entities associated with them (like the user and the profile and the counts of the user -- score, actions, etc)
+
+```
